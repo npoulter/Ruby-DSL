@@ -83,7 +83,15 @@ class RubyDSL
 	end
 	
 	def processOrders
-		
+		keepProcessing = true
+		while keepProcessing == true
+			puts "Enter product type or 'D' (Done) to end:"
+			theType = gets.chomp
+			if theType == 'd' || theType == 'D'
+				keepProcessing = false
+				self.printMainMenu
+			end
+		end
 	end
 	
 	def quitProgram
@@ -91,6 +99,25 @@ class RubyDSL
 		exit
 	end
 	
+end
+
+# Define the methods for processing the orders
+def product(text)
+end
+
+def packing_slip(text)
+end
+
+def pay(text)
+end
+
+def email(text)
+end
+
+def activate
+end
+
+def free(text)
 end
 
 # For testing that things are working properly
