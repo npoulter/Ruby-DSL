@@ -14,6 +14,7 @@ class RubyDSL
 	
 	def printMainMenu
 		selection = false
+		userSelection = 0
 		puts "<<<<<  Main Menu >>>>>"
 		puts "1. Load rules"
 		puts "2. Process Orders"
@@ -28,12 +29,20 @@ class RubyDSL
 				puts "You must select a valid option"
 			end
 		end
-		return userSelection
+		case userSelection.to_i
+		when 1
+			self.getFileName
+		when 2
+			self.processOrders
+		when 3
+			self.quitProgram
+		end
 	end
 	
 	def getFileName
 		puts "Enter file name containing the rules: "
 		fileName = gets.chomp
+		self.loadFile(fileName)
 	end
 	
 	def loadFile(fileName)
@@ -72,10 +81,19 @@ class RubyDSL
 			puts "Invalid filename! Please try again."
 		end
 	end
+	
+	def processOrders
+		
+	end
+	
+	def quitProgram
+		puts "Thanks for using the DSL."
+		exit
+	end
+	
 end
 
 # For testing that things are working properly
 DSL = RubyDSL.new
 DSL.initializeDSL
 DSL.printMainMenu
-DSL.loadFile(DSL.getFileName)
