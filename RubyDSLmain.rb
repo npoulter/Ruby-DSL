@@ -15,6 +15,7 @@ class RubyDSL
 	def printMainMenu
 		selection = false
 		userSelection = 0
+		# Print the menu
 		puts "<<<<<  Main Menu >>>>>"
 		puts "1. Load rules"
 		puts "2. Process Orders"
@@ -23,12 +24,14 @@ class RubyDSL
 			puts "Your option: "
 			# Only take the first character
 			userSelection = gets.chomp.chars.first
+			# Check that its one of the designated values
 			if 1 <= userSelection.to_i && userSelection.to_i <= 3
 				selection = true
 			else
 				puts "You must select a valid option"
 			end
 		end
+		# Case statement to process the input
 		case userSelection.to_i
 		when 1
 			self.getFileName
@@ -84,6 +87,7 @@ class RubyDSL
 	
 	def processOrders
 		keepProcessing = true
+		# Continue processing the orders until the user enters 'd' or 'D'
 		while keepProcessing == true
 			puts "Enter product type or 'D' (Done) to end:"
 			theType = gets.chomp
@@ -94,6 +98,7 @@ class RubyDSL
 		end
 	end
 	
+	# Exit if the user enters 3 at the main menu
 	def quitProgram
 		puts "Thanks for using the DSL."
 		exit
