@@ -16,22 +16,9 @@ class RubyDSL
 		@products = []
 	end
 	
-	def addProduct(name)
-		
-	end
-	
-	def addJob(job, text)
-		
-	end
-	
-	def printMainMenu
+	def getUserResponse
 		selection = false
 		userSelection = 0
-		# Print the menu
-		puts "<<<<<  Main Menu >>>>>"
-		puts "1. Load rules"
-		puts "2. Process Orders"
-		puts "3. End"
 		while selection == false
 			puts "Your option: "
 			# Only take the first character
@@ -52,6 +39,16 @@ class RubyDSL
 		when 3
 			self.quitProgram
 		end
+	end
+	
+	def printMainMenu
+		# Print the menu
+		puts "<<<<<  Main Menu >>>>>"
+		puts "1. Load rules"
+		puts "2. Process Orders"
+		puts "3. End"
+		
+		self.getUserResponse
 	end
 	
 	def getFileName
@@ -88,7 +85,9 @@ class RubyDSL
 			puts "Invalid filename! Please try again."
 		end
 		
-		pp @products
+		# uncomment to pretty print the products after they have loaded
+		# pp @products
+		
 		self.printMainMenu
 	end
 	
