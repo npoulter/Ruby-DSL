@@ -6,10 +6,22 @@
 	Project: Ruby DSL Main file
 =end
 
+require 'pp'
+require './product.rb'
+
 class RubyDSL
 	
 	def initializeDSL
 		@fileHash = Hash.new
+		@products = []
+	end
+	
+	def addProduct(name)
+		
+	end
+	
+	def addJob(job, text)
+		
 	end
 	
 	def printMainMenu
@@ -59,30 +71,24 @@ class RubyDSL
 		# Open the file and iterate through it unless it is invalid
 		if File.file?(fileName)
 			@RuleFile = File.open(fileName.to_s)
-			x = 0
-			theCommand = ""
-			theProduct = ""
+			theJob, theText, lastLine = nil
 			# Iterate line by line
 			while line = @RuleFile.gets
-				# Split the line into words
-				line.split(' ').each do |word|
-					if x % 2 == 0
-						# First word is the product
-						puts word
-						theProduct = word
-						x = x + 1
-					else
-						# Second word is what we're doing with it
-						theCommand = word
-						# Store it in the hash
-						@fileHash[theProduct.to_sym] = theCommand.to_sym
-						x = x + 1
-					end
+				# Split the line into job & text
+				theJob, theText = line.split(' ')
+				if((lastLine == nil || (lastLine =~ /^\n/)) && !(line =~ /^\n/))
+					@products << Product.new(theText)
+				elsif( !(line =~ /^\n/) )
+					@products.last << Job.new(theJob, theText)
 				end
+				
+				lastLine = line
 			end
 		else
 			puts "Invalid filename! Please try again."
 		end
+		
+		self.printMainMenu
 	end
 	
 	def processOrders
@@ -91,10 +97,13 @@ class RubyDSL
 		while keepProcessing == true
 			puts "Enter product type or 'D' (Done) to end:"
 			theType = gets.chomp
+	
 			if theType == 'd' || theType == 'D'
 				keepProcessing = false
 				self.printMainMenu
 			end
+			# start the process for this product
+			product(theType)
 		end
 	end
 	
@@ -108,6 +117,9 @@ end
 
 # Define the methods for processing the orders
 def product(text)
+	# ensure the product is valid (iterate through products, matching against name)
+	
+	# if valid, do the jobs for the product (turn each job into symbol & call with params)
 end
 
 def packing_slip(text)
