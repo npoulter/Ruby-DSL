@@ -3,7 +3,7 @@ class Product
 	attr_reader :name, :jobs
 
 	def initialize(name)
-		@name = name.split('-').join(' ')
+		@name = name.rstrip
 		@jobs = []
 	end
 
@@ -19,8 +19,8 @@ class Job
 	attr_reader :type, :text
 	
 	def initialize(type, text)
-		@type = type
-		@text = text.split('-').join(' ') if text else text
+		@type = type.rstrip
+		@text = text
 	end
 
 end

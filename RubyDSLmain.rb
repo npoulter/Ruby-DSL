@@ -75,7 +75,7 @@ class RubyDSL
 			# Iterate line by line
 			while line = @RuleFile.gets
 				# Split the line into job & text
-				theJob, theText = line.split(' ')
+				theJob, theText = line.split("'")
 				if((lastLine == nil || (lastLine =~ /^\n/)) && !(line =~ /^\n/))
 					@products << Product.new(theText)
 				elsif( !(line =~ /^\n/) )
@@ -88,6 +88,7 @@ class RubyDSL
 			puts "Invalid filename! Please try again."
 		end
 		
+		pp @products
 		self.printMainMenu
 	end
 	
