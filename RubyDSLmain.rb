@@ -111,18 +111,23 @@ def product(text)
 end
 
 def packing_slip(text)
+	puts "----Creating a packing slip for the #{text} department----"
 end
 
 def pay(text)
+	puts "----Paying #{text}----"
 end
 
 def email(text)
+	puts "----Emailing #{text}----"
 end
 
 def activate
+	puts "----Activating the membership----"
 end
 
 def free(text)
+	puts "----Including a free #{text}"
 end
 
 # For testing that things are working properly
